@@ -1,0 +1,140 @@
+---
+
+---
+
+<section class="bg-[#1B2A41] py-12 md:py-16">
+  <div
+    class="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-5 md:px-0"
+  >
+    <!-- Imagen del Agente -->
+    <div class="flex justify-center md:justify-end">
+      <img
+        src="/assets/img/agenteInmobiliario.png"
+        alt="Gabriel Benavides - Agente Inmobiliario"
+        class="w-[90%] sm:w-[70%] md:w-[600px] h-auto mask-image"
+        style="mask-image: linear-gradient(to bottom, black 80%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);"
+      />
+    </div>
+
+    <!-- Información del Agente -->
+    <div class="text-white space-y-5 text-center md:text-left">
+      <h2 class="text-3xl sm:text-4xl font-bold">Gabriel Benavides</h2>
+      <p class="text-lg text-gray-300 font-semibold">
+        Agente Inmobiliario | Propietario de B&Y Terrenos y Proyectos
+      </p>
+      <p class="text-gray-400 leading-relaxed">
+        Con más de 5 años de experiencia en el sector inmobiliario, Gabriel
+        Benavides se ha consolidado como un referente en la venta de lotes y
+        propiedades campestres en Cundinamarca. Su compromiso y dedicación
+        garantizan un servicio personalizado, enfocado en encontrar el lugar
+        ideal para cada cliente.
+      </p>
+      <div class="flex items-center gap-5 justify-center md:justify-start">
+        <p class="text-gray-400">Dueño de:</p>
+        <img
+          src="/assets/img/logo-header.png"
+          alt="JBY"
+          class="h-10 scale-150 md:scale-175"
+        />
+      </div>
+      <!-- Botones de contacto -->
+      <div
+        class="flex flex-col md:flex-row gap-4 mt-6 justify-center md:justify-start"
+      >
+        <a
+          href="https://wa.me/573214425773"
+          target="_blank"
+          class="flex items-center gap-x-2 justify-center border border-green-500 text-white bg-green-700/40 hover:bg-green-500 font-semibold px-6 py-2 rounded-lg shadow-md transition duration-300 w-full md:w-auto"
+        >
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+
+        <a
+          href="tel:+573144425773"
+          class="flex items-center gap-x-2 justify-center border border-blue-500 text-white bg-blue-700/40 hover:bg-blue-500 font-semibold px-6 py-2 rounded-lg shadow-md transition duration-300 w-full md:w-auto"
+        >
+          <i class="fas fa-calendar-alt"></i> Agendar cita
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de estadísticas -->
+  <div
+    class="max-w-screen-xl mx-auto mt-12 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 md:gap-6 text-center text-white px-5 md:px-0"
+  >
+    <div class="bg-[#243b55] p-4 md:p-6 rounded-lg">
+      <h3 id="stat1" class="text-xl md:text-3xl font-bold">0</h3>
+      <p class="text-gray-400">En transacciones inmobiliarias</p>
+    </div>
+    <div class="bg-[#243b55] p-4 md:p-6 rounded-lg">
+      <h3 id="stat2" class="text-2xl md:text-3xl font-bold">0</h3>
+      <p class="text-gray-400">Propiedades vendidas</p>
+    </div>
+    <div class="bg-[#243b55] p-4 md:p-6 rounded-lg">
+      <h3 id="stat3" class="text-2xl md:text-3xl font-bold">+0</h3>
+      <p class="text-gray-400">Propiedades en venta</p>
+    </div>
+    <div class="bg-[#243b55] p-4 md:p-6 rounded-lg">
+      <h3 id="stat4" class="text-2xl md:text-3xl font-bold">+0</h3>
+      <p class="text-gray-400">Años de experiencia</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const counters = [
+    {
+      id: "stat1",
+      max: 180000000,
+      duration: 5000,
+      prefix: "+",
+      suffix: " Millones",
+    },
+    { id: "stat2", max: 60, duration: 5000, prefix: "+", suffix: "" },
+    { id: "stat3", max: 50, duration: 5000, prefix: "", suffix: "" },
+    { id: "stat4", max: 5, duration: 5000, prefix: "+", suffix: "" },
+  ];
+
+  const animateCounter = (id, max, duration, prefix = "", suffix = "") => {
+    let start = 0;
+    const increment = max / (duration / 16); // 16ms por frame (~60fps)
+    const element = document.getElementById(id);
+
+    const updateCounter = () => {
+      start += increment;
+      if (start < max) {
+        element.innerText = `${prefix}${Math.floor(start).toLocaleString()}${suffix}`;
+        requestAnimationFrame(updateCounter);
+      } else {
+        element.innerText = `${prefix}${max.toLocaleString()}${suffix}`;
+      }
+    };
+    updateCounter();
+  };
+
+  const observer = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          counters.forEach((counter) => {
+            animateCounter(
+              counter.id,
+              counter.max,
+              counter.duration,
+              counter.prefix,
+              counter.suffix
+            );
+          });
+          observer.unobserve(entry.target); // Deja de observar para que no vuelva a ejecutar
+        }
+      });
+    },
+    {
+      root: null, // viewport principal
+      threshold: 0.5, // 20% visible para que se active
+    }
+  );
+
+  observer.observe(document.querySelector(".max-w-screen-xl"));
+</script>

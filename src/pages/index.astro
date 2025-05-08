@@ -1,0 +1,48 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.astro";
+import "../styles/global.css";
+import FincasEnAlquiler from "../components/FincasEnAlquiler.astro";
+import LotesEnVenta from "../components/GaleriaLotes.jsx";
+import SobreNosotros from "../components/SobreNosotros.astro";
+import AgenteDestacado from "../components/AgenteDestacado.astro";
+import TestimoniosClientes from "../components/TestimoniosClientes.jsx";
+import MarcoConfianza from "../components/MarcoConfianza.astro";
+---
+
+<Layout>
+  <!-- Hero Section -->
+  <section id="inicio">
+    <Hero />
+  </section>
+
+  <!-- Lotes en Venta -->
+  <section id="lotes">
+    <LotesEnVenta client:visible />
+  </section>
+
+  <!-- Sobre Nosotros -->
+  <section id="sobre-nosotros">
+    <SobreNosotros />
+  </section>
+
+  <!-- Fincas en Alquiler -->
+  <section id="fincas">
+    <FincasEnAlquiler />
+  </section>
+
+  <!-- Agente Destacado -->
+  <section id="agente-destacado">
+    <AgenteDestacado />
+  </section>
+
+  <!-- Testimonios -->
+  <section id="testimonios">
+    <TestimoniosClientes client:visible />
+  </section>
+
+  <!-- Marco de Confianza -->
+  <section id="marco-confianza">
+    <MarcoConfianza />
+  </section>
+</Layout>

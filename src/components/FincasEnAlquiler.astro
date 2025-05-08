@@ -1,0 +1,26 @@
+---
+import FincaCardModal from '../components/FincaCardModal.jsx';
+---
+
+<section class="bg-gray-00 py-10 px-5 md:px-20">
+  <div class="text-center mb-8">
+    <div class="flex flex-col md:flex-row items-center gap-4 md:gap-10 justify-center p-4">
+      <h2 class="text-2xl md:text-4xl font-bold text-gray-800 text-center md:text-left">
+        Alquiler de Fincas en Cundinamarca por 
+      </h2> 
+      <img 
+        src="./assets/img/logo-negro.png" 
+        class="h-14 md:h-20 w-auto scale-200 md:scale-200" 
+        alt="Logo"
+      />
+    </div>
+    
+      
+
+    <p class="text-gray-600 mt-2 max-w-2xl mx-auto">
+      Vive la experiencia única de hospedarte en fincas exclusivas rodeadas de naturaleza y comodidad.
+    </p>
+  </div>
+
+  <FincaCardModal client:visible />
+</section>
